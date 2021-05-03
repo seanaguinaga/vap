@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Layer, Stage, Star, Text } from "react-konva";
+import { VAP } from "./ExploreContainer";
 
 function generateShapes() {
   return [...Array(10)].map((_, i) => ({
@@ -14,6 +15,7 @@ function generateShapes() {
 const INITIAL_STATE = generateShapes();
 
 const Stars: React.FC = () => {
+  let vap = VAP.useContainer();
   let [stars, setStars] = useState(INITIAL_STATE);
 
   let handleDragStart = (e: any) => {
@@ -39,42 +41,44 @@ const Stars: React.FC = () => {
     );
   };
 
-  useEffect(() => console.log(stars), [stars]);
-
-  return (
-    <Stage
-      width={window.innerWidth}
-      height={window.innerHeight}
-      style={{ position: "absolute", top: 0, pointerEvents: "none" }}
-    >
-      <Layer>
-        <Text text="Try to drag a star" />
-        {stars.map((star) => (
-          <Star
-            key={star.id}
-            id={star.id}
-            x={star.x}
-            y={star.y}
-            numPoints={5}
-            innerRadius={20}
-            outerRadius={40}
-            fill="#89b717"
-            opacity={0.8}
-            draggable
-            rotation={star.rotation}
-            shadowColor="black"
-            shadowBlur={10}
-            shadowOpacity={0.6}
-            shadowOffsetX={star.isDragging ? 10 : 5}
-            shadowOffsetY={star.isDragging ? 10 : 5}
-            scaleX={star.isDragging ? 1.2 : 1}
-            scaleY={star.isDragging ? 1.2 : 1}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-          />
-        ))}
-      </Layer>
-    </Stage>
+  return useMemo(
+    () =>
+      vap.size.width && vap.size.height ? (
+        <Stage
+          width={vap.size.width}
+          height={vap.size.height}
+          style={{ position: "absolute", top: 0, pointerEvents: "none" }}
+        >
+          <Layer>
+            <Text text="Try to drag a star" />
+            {stars.map((star) => (
+              <Star
+                key={star.id}
+                id={star.id}
+                x={star.x}
+                y={star.y}
+                numPoints={5}
+                innerRadius={20}
+                outerRadius={40}
+                fill="#89b717"
+                opacity={0.8}
+                draggable
+                rotation={star.rotation}
+                shadowColor="black"
+                shadowBlur={10}
+                shadowOpacity={0.6}
+                shadowOffsetX={star.isDragging ? 10 : 5}
+                shadowOffsetY={star.isDragging ? 10 : 5}
+                scaleX={star.isDragging ? 1.2 : 1}
+                scaleY={star.isDragging ? 1.2 : 1}
+                onDragStart={handleDragStart}
+                onDragEnd={handleDragEnd}
+              />
+            ))}
+          </Layer>
+        </Stage>
+      ) : null,
+    [vap.size.height]
   );
 };
 
