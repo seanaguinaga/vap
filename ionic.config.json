@@ -1,0 +1,7 @@
+{
+  "name": "vap",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
