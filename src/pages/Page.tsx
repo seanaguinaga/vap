@@ -8,11 +8,12 @@ import {
   IonMenuButton,
   IonPage,
   IonTitle,
-  IonToolbar,
+  IonToolbar
 } from "@ionic/react";
 import { play } from "ionicons/icons";
 import { useParams } from "react-router";
 import ExploreContainer from "../components/ExploreContainer";
+import WASM from "../components/WASM";
 import "./Page.css";
 
 const Page: React.FC = () => {
@@ -43,6 +44,9 @@ const Page: React.FC = () => {
             <IonButton>
               <IonIcon icon={play} />
             </IonButton>
+          </IonButtons>
+          <IonButtons slot="end">
+            <WASM />
           </IonButtons>
         </IonToolbar>
       </IonFooter>
