@@ -47,7 +47,11 @@ const Stars: React.FC = () => {
         <Stage
           width={vap.size.width}
           height={vap.size.height}
-          style={{ position: "absolute", top: 0, pointerEvents: "none" }}
+          style={{
+            position: "absolute",
+            top: 0,
+            // pointerEvents: "none"
+          }}
         >
           <Layer>
             <Text text="Try to drag a star" />
@@ -73,6 +77,8 @@ const Stars: React.FC = () => {
                 scaleY={star.isDragging ? 1.2 : 1}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
+                onTouchStart={handleDragStart}
+                onTouchEnd={handleDragEnd}
               />
             ))}
           </Layer>

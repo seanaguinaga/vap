@@ -2,9 +2,7 @@ import React, { useMemo } from "react";
 import ReactPlayer from "react-player";
 import { SizeMe } from "react-sizeme";
 import styled from "styled-components";
-//@ts-expect-error yes
 import landscape from "../resources/landscape.mp4";
-//@ts-expect-error yes
 import portrait from "../resources/portrait.mp4";
 import "./ExploreContainer.css";
 
@@ -56,6 +54,7 @@ const Video: React.FC<ContainerProps> = ({ setSize }) => {
               height="100%"
               controls
               playsinline
+              onProgress={(e: any) => console.log(e)}
             />
           ) : (
             <Wrapper>
@@ -65,6 +64,7 @@ const Video: React.FC<ContainerProps> = ({ setSize }) => {
                 height="100%"
                 controls
                 playsinline
+                onProgress={(e: any) => console.log(e)}
               />
             </Wrapper>
           );
