@@ -19,6 +19,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@typesaurus/react": "^4.0.1",
     "@xstate/react": "^1.3.3",
+    "audio-react-recorder": "^1.0.4",
     "automerge": "^0.14.2",
     "firebase": "^8.5.0",
     "install": "^0.13.0",

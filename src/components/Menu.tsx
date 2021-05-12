@@ -25,6 +25,7 @@ import {
   warningSharp,
 } from "ionicons/icons";
 import { useLocation } from "react-router-dom";
+import styled from "styled-components";
 import "./Menu.css";
 
 interface AppPage {
@@ -73,13 +74,18 @@ const appPages: AppPage[] = [
   },
 ];
 
+let StyledIonMenu = styled(IonMenu)`
+  --width: 100vw;
+  --background: #2a2a2a;
+`;
+
 const labels = ["Family", "Friends", "Notes", "Work", "Travel", "Reminders"];
 
 const Menu: React.FC = () => {
   let location = useLocation();
 
   return (
-    <IonMenu contentId="main" type="overlay">
+    <StyledIonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
           <IonListHeader>Inbox</IonListHeader>
@@ -118,7 +124,7 @@ const Menu: React.FC = () => {
           ))}
         </IonList>
       </IonContent>
-    </IonMenu>
+    </StyledIonMenu>
   );
 };
 

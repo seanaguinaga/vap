@@ -50,7 +50,7 @@ const Stars: React.FC = () => {
           style={{
             position: "absolute",
             top: 0,
-            // pointerEvents: "none"
+            // pointerEvents: "none",
           }}
         >
           <Layer>
