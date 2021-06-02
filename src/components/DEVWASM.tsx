@@ -1,8 +1,12 @@
 import React from "react";
 import * as worker from "../mediainfo.worker";
 
-//@ts-expect-error yes
-const { wasm } = worker();
+let wasm: any;
+
+if (worker) {
+  //@ts-expect-error yes
+  wasm = worker();
+}
 
 function DEVWASM() {
   let handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
