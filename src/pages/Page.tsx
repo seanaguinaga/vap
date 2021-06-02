@@ -8,13 +8,16 @@ import {
   IonMenuButton,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from "@ionic/react";
 import { play } from "ionicons/icons";
 import { useParams } from "react-router";
+import DEVWASM from "../components/DEVWASM";
 import ExploreContainer from "../components/ExploreContainer";
-import WASM from "../components/WASM";
+import PRODWASM from "../components/PRODWASM";
 import "./Page.css";
+
+const devMode = process.env.NODE_ENV !== "production";
 
 const Page: React.FC = () => {
   let { name } = useParams<{ name: string }>();
@@ -46,7 +49,7 @@ const Page: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonButtons slot="end">
-            <WASM />
+            {devMode ? <DEVWASM /> : <PRODWASM />}
           </IonButtons>
         </IonToolbar>
       </IonFooter>
