@@ -1,13 +1,16 @@
 import React from "react";
 import * as worker from "../mediainfo.worker";
 
-const devMode: any = process.env.NODE_ENV !== "production";
+const devMode = process.env.NODE_ENV !== "production";
 
-let wasmWorker: any;
+interface IWASMWorker {
+  wasm: (file: File | Blob) => Promise<Result>;
+}
+
+let wasmWorker: IWASMWorker;
 
 if (devMode) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-ignore
+  //@ts-expect-error mhm
   wasmWorker = worker();
 }
 
@@ -15,7 +18,10 @@ function DEVWASM() {
   let handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     let file = event.target.files?.[0];
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    if (!file) {
+      return;
+    }
+
     let result: Result = await wasmWorker.wasm(file);
 
     console.log(result);
