@@ -23,8 +23,8 @@ const handleChange = (event) => {
   });
   console.log(event.target.files[0]);
 };
-function DEVWASM() {
+function PRODWASM() {
   return <input type="file" onChange={handleChange} />;
 }
 
-export default DEVWASM;
+export default PRODWASM;
