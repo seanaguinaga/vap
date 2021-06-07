@@ -12,12 +12,9 @@ import {
 } from "@ionic/react";
 import { play } from "ionicons/icons";
 import { useParams } from "react-router";
-import DEVWASM from "../components/DEVWASM";
 import ExploreContainer from "../components/ExploreContainer";
-import PRODWASM from "../components/PRODWASM";
+import { handleFileChange } from "../lib/wasmHandler";
 import "./Page.css";
-
-const devMode = process.env.NODE_ENV !== "production";
 
 const Page: React.FC = () => {
   let { name } = useParams<{ name: string }>();
@@ -49,7 +46,7 @@ const Page: React.FC = () => {
             </IonButton>
           </IonButtons>
           <IonButtons slot="end">
-            {devMode ? <DEVWASM /> : <PRODWASM />}
+            <input type="file" onChange={handleFileChange} />
           </IonButtons>
         </IonToolbar>
       </IonFooter>
