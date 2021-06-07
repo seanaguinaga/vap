@@ -12,16 +12,15 @@ const readChunk = (file) => (chunkSize, offset) =>
     reader.readAsArrayBuffer(file.slice(offset, offset + chunkSize));
   });
 
-const handleChange = (event) => {
+const handleChange = async (event) => {
   const file = event.target.files[0];
-  MediaInfo().then((mediainfo) => {
-    mediainfo
-      .analyzeData(() => file.size, readChunk(file))
-      .then((result) => {
-        console.log(result);
-      });
-  });
-  console.log(event.target.files[0]);
+  try {
+    let mediainfo = await MediaInfo();
+    let result = await mediainfo.analyzeData(() => file.size, readChunk(file));
+    console.log("RESULT", result);
+  } catch (error) {
+    console.log(error);
+  }
 };
 function PRODWASM() {
   return <input type="file" onChange={handleChange} />;
